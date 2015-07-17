@@ -1,0 +1,18 @@
+
+    {{#nav}}
+    <nav role="navigation">
+        <h2 class="nav__title">Navigation</h2>
+        {{#nav__list}}
+        <ul class="nav__list">
+            {{#nav__item}}
+            <li class="nav__item {{class}}">
+                <a class="nav__link" href="{{url}}">{{name}}</a>
+            </li>
+            {{/nav__item}}
+        </ul>
+        {{/nav__list}}
+    </nav>
+    {{/nav}}
+    {{^nav}}
+    <!-- no navigation data -->
+    {{/nav}}

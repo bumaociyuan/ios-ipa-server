@@ -1,0 +1,64 @@
+{
+  "name": "crypto",
+  "id": "crypto",
+  "version": "0.0.3",
+  "description": "JavaScript implementations of standard and secure cryptographic algorithms.",
+  "keywords": [
+    "crypto",
+    "md5",
+    "sha1"
+  ],
+  "author": {
+    "name": "Irakli Gozalishvili",
+    "email": "rfobic@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Gozala/crypto.git",
+    "web": "https://github.com/Gozala/crypto"
+  },
+  "bugs": {
+    "url": "http://github.com/Gozala/crypto/issues/"
+  },
+  "devDependencies": {
+    "test": ">=0.0.10"
+  },
+  "directories": {
+    "lib": "./"
+  },
+  "scripts": {
+    "test": "node test/test-crypto.js"
+  },
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "http://pajhome.org.uk/site/legal.html#bsdlicense"
+    }
+  ],
+  "_npmUser": {
+    "name": "gozala",
+    "email": "rfobic@gmail.com"
+  },
+  "_id": "crypto@0.0.3",
+  "dependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "_engineSupported": true,
+  "_npmVersion": "1.0.101",
+  "_nodeVersion": "v0.5.9",
+  "_defaultsLoaded": true,
+  "dist": {
+    "shasum": "470a81b86be4c5ee17acc8207a1f5315ae20dbb0",
+    "tarball": "http://registry.npmjs.org/crypto/-/crypto-0.0.3.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "gozala",
+      "email": "rfobic@gmail.com"
+    }
+  ],
+  "_shasum": "470a81b86be4c5ee17acc8207a1f5315ae20dbb0",
+  "_from": "crypto@",
+  "_resolved": "https://registry.npmjs.org/crypto/-/crypto-0.0.3.tgz"
+}

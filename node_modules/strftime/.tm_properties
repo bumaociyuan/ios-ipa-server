@@ -1,0 +1,2 @@
+include = "{$include,.gitignore}"
+exclude = "{$exclude,node_modules}"

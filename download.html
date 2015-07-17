@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ipa download</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=320,maximum-scale=1,user-scalable=no"/>
+<style type="text/css">
+	h3 {  color: red; }
+	.name{
+		font-size: 30px;
+	}
+</style>
+
+</head>
+<body>
+<script src="qrcode/jquery.min.js"></script>
+<script type="text/javascript" src="qrcode/jquery.qrcode.js"></script>
+<script type="text/javascript" src="qrcode/qrcode.js"></script>
+
+<h3>如果微信点击安装链接无效，请点击右上角“在Safari中打开”</h3>
+<div id="qrcodeTable"></div>
+
+{{#items}}
+<h4><a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/handday/test/master/folder/{{name}}.plist"><span class="name">{{name}}</span> {{description}}</a></h4>
+{{/items}}
+
+<script>
+	//jQuery('#qrcode').qrcode("this plugin is great");
+	var url = location.href;
+	jQuery('#qrcodeTable').qrcode({
+		render	: "table",
+		text	: url
+	});	
+
+</script>
+
+</body>
+</html>

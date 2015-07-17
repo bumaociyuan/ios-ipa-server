@@ -1,0 +1,15 @@
+{
+    "title": "grunt-Mustatic",
+
+    "site_owner": "David Bushell",
+    "description": "Grunt task for rendering static HTML templates with Mustache",
+
+    "nav": {
+        "nav__list": {
+            "nav__item": [
+                { "name": "Home", "url": "index.html" },
+                { "name": "Guide", "url": "guide/index.html" }
+            ]
+        }
+    }
+}
