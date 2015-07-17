@@ -2,6 +2,13 @@ var fs = require('fs');
 var express = require('express');
 var mustache = require('mustache');
 var strftime = require('strftime');
+var https = require('https');
+
+var options = {
+	key: fs.readFileSync('cer/mycert1.key', 'utf8'),
+	cert: fs.readFileSync('cer/mycert1.cer', 'utf8')
+};
+
 var app = express();
 var port = 1234;
 
@@ -22,18 +29,31 @@ app.use('/download', function(req, res, next) {
 			return a.time < b.time;
 		})
 
-		var data = {};
-		data.items = items;
-		// console.log(data);
-		var rendered = mustache.render(template, data);
+		var info = {};
+		info.items = items;
+
+		var rendered = mustache.render(template, info);
 		res.send(rendered);
 	})
 });
 
-app.listen(port, function() {
-	console.log("Server running at http://192.168.1.52:" + port);
-	console.log('start')
+
+app.get('/plist/:file', function(req, res) {
+	fs.readFile('template.plist', function(err, data) {
+		if (err) throw err;
+		var template = data.toString();
+
+		var rendered = mustache.render(template, {name:req.params.file});
+
+		res.set('Content-Type', 'text/plain; charset=utf-8');
+		res.send(rendered);
+		res.end();
+	})
 });
+
+
+https.createServer(options, app).listen(port);
+
 
 function itemWithEnv(env) {
 	var stat = fs.statSync(env + '.ipa');
