@@ -13,17 +13,19 @@ var options = {
 var app = express();
 var port = 1234;
 
+var ipasLocation = 'ipas/';
+
+
 app.use('/', express.static(__dirname + '/'));
 
 app.use('/download', function(req, res, next) {
-
 
 	fs.readFile('download.html', function(err, data) {
 		if (err) throw err;
 		var template = data.toString();
 
 		var ipas = [];
-		var files = fs.readdirSync('ipas/');
+		var files = fs.readdirSync(ipasLocation);
 		for (var i in files) {
 			if (path.extname(files[i]) === ".ipa") {
 				ipas.push(path.basename(files[i],'.ipa'));
@@ -64,7 +66,7 @@ https.createServer(options, app).listen(port);
 
 
 function itemWithEnv(env) {
-	var stat = fs.statSync('ipas/' + env + '.ipa');
+	var stat = fs.statSync(ipasLocation + env + '.ipa');
 	var time = new Date(stat.mtime);
 	var timeString = strftime('%F %H:%M', time);
 	return {
