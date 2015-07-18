@@ -21,12 +21,12 @@
 <script type="text/javascript" src="qrcode/qrcode.js"></script>
 
 <h3>如果微信点击安装链接无效，请点击右上角“在Safari中打开”</h3>
-<h4><a href="https://192.168.1.52:1234/cer/myCA.cer">如果出现无法信任的站点或者无法安装，请点击此链接安装证书</a></h4>
+<h4><a href="https://{{ip}}:{{port}}/cer/myCA.cer">如果出现'无法验证服务器身份'，请点击此链接安装证书</a></h4>
 
 <div id="qrcodeTable"></div>
 
 {{#items}}
-<h4><a href="itms-services://?action=download-manifest&url=https://192.168.1.52:1234/plist/{{name}}"><span class="name">{{name}}</span>{{description}}</a></h4>
+<h4><a href="itms-services://?action=download-manifest&url=https://{{ip}}:{{port}}/plist/{{name}}"><span class="name">{{name}}</span>{{description}}</a></h4>
 {{/items}}
 
 <script>

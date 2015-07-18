@@ -1,10 +1,9 @@
 {
-  "name": "ipa",
+  "name": "zxIpaServer",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create a HTTPS Server to install ipa locally",
   "main": "index.js",
   "dependencies": {
-    "crypto": "^0.0.3",
     "dbushell-grunt-mustatic": "^0.1.1",
     "express": "^4.12.3",
     "mustache": "^2.0.0",
@@ -15,5 +14,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bumaociyuan/zxIpaServer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bumaociyuan/zxIpaServer/issues"
+  },
+  "homepage": "https://github.com/bumaociyuan/zxIpaServer"
 }
