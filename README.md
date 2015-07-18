@@ -1,7 +1,5 @@
 Create a HTTPS Server to install ipa locally
 
-[self signed certificates in iOS](http://bumaociyuan.github.io/ios/2015/07/17/self-signed-certificates-in-ios.html)
-
 #Require
 * [nodejs](https://nodejs.org/)
 
