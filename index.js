@@ -12,7 +12,7 @@ var options = {
 	cert: fs.readFileSync('cer/mycert1.cer', 'utf8')
 };
 
-var ipasDir = 'ipas/';
+var ipasDir = 'ipas';
 var port = 1234;
 var ipAddress = underscore
 	.chain(require('os').networkInterfaces())
@@ -74,7 +74,7 @@ app.get('/plist/:file', function(req, res) {
 https.createServer(options, app).listen(port);
 
 function itemWithEnv(env) {
-	var stat = fs.statSync(ipasDir + env + '.ipa');
+	var stat = fs.statSync(ipasDir +'/'+ env + '.ipa');
 	var time = new Date(stat.mtime);
 	var timeString = strftime('%F %H:%M', time);
 	return {
