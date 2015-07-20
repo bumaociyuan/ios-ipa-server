@@ -27,7 +27,9 @@ var ipAddress = underscore
 console.log('https://' + ipAddress + ':' + port + '/download');
 
 var app = express();
-app.use('/', express.static(__dirname + '/'));
+// app.use('/', express.static(__dirname + '/' + ipasDir));
+app.use('/qrcode', express.static(__dirname + '/qrcode'));
+
 
 app.use('/download', function(req, res, next) {
 
@@ -63,7 +65,6 @@ app.get('/plist/:file', function(req, res) {
 			name: req.params.file,
 			ip: ipAddress,
 			port: port,
-			ipasDir: ipasDir
 		});
 
 		res.set('Content-Type', 'text/plain; charset=utf-8');
@@ -74,7 +75,7 @@ app.get('/plist/:file', function(req, res) {
 https.createServer(options, app).listen(port);
 
 function itemWithEnv(env) {
-	var stat = fs.statSync(ipasDir +'/'+ env + '.ipa');
+	var stat = fs.statSync(ipasDir + '/' + env + '.ipa');
 	var time = new Date(stat.mtime);
 	var timeString = strftime('%F %H:%M', time);
 	return {
