@@ -8,13 +8,14 @@ Create a HTTPS Server to install ipa locally
 
 ##生成自签名证书
 ```
-sh generate-certificate.sh
+$ sh generate-certificate.sh
 #input any password
+$ npm install
 ```
 
 ##启动服务
 ```
-node index.js
+$ node index.js
 ```
 
 ##效果图
