@@ -5,20 +5,21 @@
   "main": "index.js",
   "dependencies": {
     "dbushell-grunt-mustatic": "^0.1.1",
-    "express": "^4.12.3",
-    "mustache": "^2.0.0",
-    "strftime": "^0.9.0"
+    "express": "^4.13.1",
+    "mustache": "^2.1.2",
+    "strftime": "^0.9.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/bumaociyuan/zxIpaServer.git"
   },
+  "author": "bumaociyuan",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/bumaociyuan/zxIpaServer/issues"
   },
