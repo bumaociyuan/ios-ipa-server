@@ -27,7 +27,7 @@ var ipAddress = underscore
 console.log('https://' + ipAddress + ':' + port + '/download');
 
 var app = express();
-// app.use('/', express.static(__dirname + '/' + ipasDir));
+app.use('/', express.static(__dirname + '/' + ipasDir));
 app.use('/qrcode', express.static(__dirname + '/qrcode'));
 
 
