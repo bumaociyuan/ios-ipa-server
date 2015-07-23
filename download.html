@@ -20,10 +20,11 @@
 <script type="text/javascript" src="qrcode/jquery.qrcode.js"></script>
 <script type="text/javascript" src="qrcode/qrcode.js"></script>
 
-<h3>如果微信扫描不能显示此页面请点击右上角“在Safari中打开”</h3>
-<h4><a href="https://{{ip}}:{{port}}/cer/myCA.cer">如果出现'无法验证服务器身份'或'无法连接到'，请点击此链接安装证书</a></h4>
+<h3>【微信扫描此页面不能显示】，请点击右上角“在Safari中打开”</h3>
 
 <div id="qrcodeTable"></div>
+
+<h3><a id='cer' href="https://{{ip}}:{{port}}/cer/myCA.cer">如果出现【无法验证服务器身份】或【无法连接到】，请点击此链接安装证书</a></h3>
 
 {{#items}}
 <h4><a href="itms-services://?action=download-manifest&url=https://{{ip}}:{{port}}/plist/{{name}}"><span class="name">{{name}}</span>{{description}}</a></h4>
@@ -32,7 +33,7 @@
 <script>
 	//jQuery('#qrcode').qrcode("this plugin is great");
 	var url = location.href;
-	jQuery('#qrcodeTable').qrcode({
+	$('#qrcodeTable').qrcode({
 		render	: "table",
 		text	: url
 	});	
