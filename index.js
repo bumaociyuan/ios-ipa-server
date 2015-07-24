@@ -31,7 +31,7 @@ app.use('/', express.static(__dirname + '/' + ipasDir));
 app.use('/qrcode', express.static(__dirname + '/qrcode'));
 app.use('/cer', express.static(__dirname + '/cer'));
 
-app.use('/download', function(req, res, next) {
+app.get(['/','/download'], function(req, res, next) {
 
 	fs.readFile('download.html', function(err, data) {
 		if (err) throw err;
