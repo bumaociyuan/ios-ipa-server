@@ -3,6 +3,14 @@ Create a HTTPS Server to install ipa locally
 #Require
 * [nodejs](https://nodejs.org/)
 
+#安装
+
+```
+$ git clone git@github.com:bumaociyuan/zxIpaServer.git
+$ cd zxIpaServer
+$ npm install
+```
+
 #使用
 * 打包ipa使用[Ad-hoc](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html)或者[企业级分发](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/DistributingEnterpriseProgramApps/DistributingEnterpriseProgramApps.html) 放到ipas文件夹下
 
@@ -10,7 +18,6 @@ Create a HTTPS Server to install ipa locally
 ```
 $ sh generate-certificate.sh
 #input any password
-$ npm install
 ```
 
 ##启动服务
