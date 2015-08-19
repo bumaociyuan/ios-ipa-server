@@ -31,7 +31,7 @@ app.use('/', express.static(__dirname + '/' + ipasDir));
 app.use('/qrcode', express.static(__dirname + '/qrcode'));
 app.use('/cer', express.static(__dirname + '/cer'));
 
-app.get(['/','/download'], function(req, res, next) {
+app.get(['/', '/download'], function(req, res, next) {
 
 	fs.readFile('download.html', function(err, data) {
 		if (err) throw err;
@@ -43,9 +43,14 @@ app.get(['/','/download'], function(req, res, next) {
 		for (var i = ipas.length - 1; i >= 0; i--) {
 			items.push(itemWithEnv(ipas[i]));
 		};
+
 		items = items.sort(function(a, b) {
-			return a.time < b.time;
-		})
+			var result = b.time.getTime() - a.time.getTime();
+			// if (result > 0) {result = 1} else if (result < 0) { result = -1 };
+
+			return result;
+		});
+
 		var info = {};
 		info.ip = ipAddress;
 		info.port = port;
