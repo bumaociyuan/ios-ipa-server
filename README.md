@@ -1,4 +1,4 @@
-快速生成HTTPS服务器简化ipa本地安装
+快速生成自签名HTTPS服务器，局域网安装ipa
 
 #Require
 * [nodejs](https://nodejs.org/)
@@ -23,7 +23,7 @@ $ node index.js
 ```
 
 #使用
-* 打包ipa使用[Ad-hoc](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html)或者[企业级分发](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/DistributingEnterpriseProgramApps/DistributingEnterpriseProgramApps.html) 放到ipas文件夹下
+* 使用[Ad-hoc](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html)或者[企业级分发](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/DistributingEnterpriseProgramApps/DistributingEnterpriseProgramApps.html)打包ipa 放到ipas文件夹下
 * 手机使用safari打开 https://ip:port/download 页面点击安装证书，按指示一直点击下一步和完成
 * 点击ipa链接在线安装
 
