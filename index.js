@@ -7,9 +7,24 @@ var mustache = require('mustache');
 var strftime = require('strftime');
 var underscore = require('underscore');
 
+var key;
+var cert;
+try {
+  key = fs.readFileSync('cer/mycert1.key', 'utf8');
+  cert = fs.readFileSync('cer/mycert1.cer', 'utf8');
+} catch (e) {
+	console.log('Warning:');
+	console.log('"cer/mycert1.key" not found plz run "sh generate-certificate.sh" first');
+	console.log('');
+	console.log('');
+    throw e
+  // Here you get the error when the file was not found,
+  // but you also get any other error
+}
+
 var options = {
-	key: fs.readFileSync('cer/mycert1.key', 'utf8'),
-	cert: fs.readFileSync('cer/mycert1.cer', 'utf8')
+	key: key,
+	cert: cert
 };
 
 var ipasDir = 'ipas';
@@ -73,6 +88,7 @@ app.get('/plist/:file', function(req, res) {
 		});
 
 		res.set('Content-Type', 'text/plain; charset=utf-8');
+		// res.set('MIME-Type', 'application/octet-stream');
 		res.send(rendered);
 	})
 });
