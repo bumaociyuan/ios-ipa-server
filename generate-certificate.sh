@@ -6,12 +6,6 @@ cd cer
 ip=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
 echo $ip
 
-openssl genrsa -out myselfsigned.key 2048
-
-openssl req -new -x509 -key myselfsigned.key -out myselfsigned.cer -days 365 -subj /CN=$ip
-
-openssl pkcs12 -export -out myselfsigned.pfx -inkey myselfsigned.key -in myselfsigned.cer
-
 openssl genrsa -out myCA.key 2048
 
 openssl req -x509 -new -key myCA.key -out myCA.cer -days 730 -subj /CN="ZX Custom CA"
