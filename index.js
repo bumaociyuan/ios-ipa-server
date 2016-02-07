@@ -7,9 +7,24 @@ var mustache = require('mustache');
 var strftime = require('strftime');
 var underscore = require('underscore');
 
+var key;
+var cert;
+try {
+  key = fs.readFileSync('cer/mycert1.key', 'utf8');
+  cert = fs.readFileSync('cer/mycert1.cer', 'utf8');
+} catch (e) {
+	console.log('Warning:');
+	console.log('"cer/mycert1.key" not found plz run "sh generate-certificate.sh" first');
+	console.log('');
+	console.log('');
+    throw e
+  // Here you get the error when the file was not found,
+  // but you also get any other error
+}
+
 var options = {
-	key: fs.readFileSync('cer/mycert1.key', 'utf8'),
-	cert: fs.readFileSync('cer/mycert1.cer', 'utf8')
+	key: key,
+	cert: cert
 };
 
 var ipasDir = 'ipas';
@@ -31,7 +46,7 @@ app.use('/', express.static(__dirname + '/' + ipasDir));
 app.use('/qrcode', express.static(__dirname + '/qrcode'));
 app.use('/cer', express.static(__dirname + '/cer'));
 
-app.get(['/','/download'], function(req, res, next) {
+app.get(['/', '/download'], function(req, res, next) {
 
 	fs.readFile('download.html', function(err, data) {
 		if (err) throw err;
@@ -43,9 +58,14 @@ app.get(['/','/download'], function(req, res, next) {
 		for (var i = ipas.length - 1; i >= 0; i--) {
 			items.push(itemWithEnv(ipas[i]));
 		};
+
 		items = items.sort(function(a, b) {
-			return a.time < b.time;
-		})
+			var result = b.time.getTime() - a.time.getTime();
+			// if (result > 0) {result = 1} else if (result < 0) { result = -1 };
+
+			return result;
+		});
+
 		var info = {};
 		info.ip = ipAddress;
 		info.port = port;
@@ -68,6 +88,7 @@ app.get('/plist/:file', function(req, res) {
 		});
 
 		res.set('Content-Type', 'text/plain; charset=utf-8');
+		// res.set('MIME-Type', 'application/octet-stream');
 		res.send(rendered);
 	})
 });
