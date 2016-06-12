@@ -1,25 +1,26 @@
 快速生成自签名HTTPS服务器，局域网安装ipa
 
-#Require
+# 需要
 * [nodejs](https://nodejs.org/)
 
 #安装
 
 ```
-$ git clone git@github.com:bumaociyuan/zxIpaServer.git
-$ cd zxIpaServer
-$ npm install
+$ npm install -g ios-ipa-server
 ```
 
-#生成自签名证书
+# 用法
 ```
-$ sh generate-certificate.sh
-#input any password
-```
+$ cd /path/of/ipas
+$ ios-ipa-server
 
-#启动服务
-```
-$ node index.js
+# or 
+
+$ ios-ipa-server /path/of/ipas
+
+
+# open https://ip:1234/download on your iphone 
+
 ```
 
 #使用
