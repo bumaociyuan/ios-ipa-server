@@ -1,8 +1,7 @@
 {
-  "name": "zxIpaServer",
+  "name": "ios-ipa-server",
   "version": "1.0.0",
   "description": "Create a HTTPS Server to install ipa locally",
-  "main": "index.js",
   "dependencies": {
     "commander": "^2.9.0",
     "dbushell-grunt-mustatic": "^0.1.1",
