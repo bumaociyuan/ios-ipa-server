@@ -1,4 +1,4 @@
-快速生成自签名HTTPS服务器，局域网安装ipa
+自动生成自签名HTTPS服务器，局域网快速安装ipa
 
 # 需要
 * [nodejs](https://nodejs.org/)
