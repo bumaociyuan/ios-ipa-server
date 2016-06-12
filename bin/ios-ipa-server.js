@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-var mkdirp = require('mkdirp');
 var program = require('commander');
 var fs = require('fs');
 var https = require('https');
@@ -16,8 +15,6 @@ var underscore = require('underscore');
 var os = require('os');
 require('shelljs/global');
 
-
-var port = 1234;
 var ipAddress = underscore
   .chain(require('os').networkInterfaces())
   .values()
@@ -43,8 +40,11 @@ before(program, 'outputHelp', function() {
 
 program
   .version(version)
-  .usage('[dir]')
+  .usage('[option] [dir]')
+  .option('-p, --port <port-number>', 'set port for server (defaults is 1234)')
   .parse(process.argv);
+
+var port = program.port || 1234;
 
 if (!exit.exited) {
   main();
@@ -74,23 +74,11 @@ function main() {
   var key;
   var cert;
 
-  // try {
-  //   key = fs.readFileSync(globalCerFolder + '/mycert1.key', 'utf8');
-  //   cert = fs.readFileSync(globalCerFolder + '/mycert1.cer', 'utf8');
-  // } catch (e) {
-  //   exec('sh  ' + path.join(__dirname, '..', 'generate-certificate.sh'),
-  //     function(error, stdout, stderr) {
-  //       key = fs.readFileSync(globalCerFolder + '/mycert1.key', 'utf8');
-  //       cert = fs.readFileSync(globalCerFolder + '/mycert1.cer', 'utf8');
-  //     }
-  //   );
-  // }
   try {
     key = fs.readFileSync(globalCerFolder + '/mycert1.key', 'utf8');
     cert = fs.readFileSync(globalCerFolder + '/mycert1.cer', 'utf8');
   } catch (e) {
     var result = exec('sh  ' + path.join(__dirname, '..', 'generate-certificate.sh')).output;
-    console.log(result);
     key = fs.readFileSync(globalCerFolder + '/mycert1.key', 'utf8');
     cert = fs.readFileSync(globalCerFolder + '/mycert1.cer', 'utf8');
   }
