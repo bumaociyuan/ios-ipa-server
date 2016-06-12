@@ -1,6 +1,6 @@
 {
   "name": "ios-ipa-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create a HTTPS Server to install ipa locally",
   "dependencies": {
     "commander": "^2.9.0",
@@ -26,7 +26,7 @@
   "author": "bumaociyuan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bumaociyuan/zxIpaServer/issues"
+    "url": "https://github.com/bumaociyuan/ios-ipa-server/issues"
   },
-  "homepage": "https://github.com/bumaociyuan/zxIpaServer"
+  "homepage": "https://github.com/bumaociyuan/ios-ipa-server"
 }
