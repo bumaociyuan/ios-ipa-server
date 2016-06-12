@@ -3,4 +3,6 @@
 ipas/
 !put-ipa-here
 cer/
-node_modules
+node_modules/
+temp/
+npm-debug.log
