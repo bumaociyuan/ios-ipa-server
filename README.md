@@ -2,6 +2,11 @@
 
 [For English README](./README-en.md)
 
+# 支持
+* OS X
+* Ubuntu
+* 其他平台未测试
+
 # 需要
 * [nodejs](https://nodejs.org/)
 

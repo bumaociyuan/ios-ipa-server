@@ -1,5 +1,10 @@
 Install IPA with HTTPS, and auto generate certificates.
 
+# Support Platform
+* OS X
+* Ubuntu
+* Not test for other platform
+
 # Require
 * [nodejs](https://nodejs.org/)
 
