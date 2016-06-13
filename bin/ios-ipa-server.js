@@ -167,12 +167,12 @@ function itemInfoWithName(name, ipasDir) {
   var stat = fs.statSync(location);
   var time = new Date(stat.mtime);
   var timeString = strftime('%F %H:%M', time);
-  var ipa = new AdmZip(location);
-  var ipaEntries = ipa.getEntries();
-  var iconString = '';
-  // get ipa icon only works on macos
 
+  // get ipa icon only works on macos
+  var iconString = '';
   if (process.platform == 'darwin') {
+    var ipa = new AdmZip(location);
+    var ipaEntries = ipa.getEntries();
     var tmpIn = ipasDir + '/tmpIn.png';
     var tmpOut = ipasDir + '/tmpOut.png';
     ipaEntries.forEach(function(ipaEntry) {
