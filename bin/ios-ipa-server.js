@@ -169,23 +169,27 @@ function itemInfoWithName(name, ipasDir) {
   var timeString = strftime('%F %H:%M', time);
   var ipa = new AdmZip(location);
   var ipaEntries = ipa.getEntries();
-  var iconString;
-  var tmpIn = ipasDir + '/tmpIn.png';
-  var tmpOut = ipasDir + '/tmpOut.png';
-  ipaEntries.forEach(function(ipaEntry) {
-    if (ipaEntry.entryName.indexOf('AppIcon60x60@3x.png') != -1) {
-      var buffer = new Buffer(ipaEntry.getData());
-      if (buffer.length) {
-        fs.writeFileSync(tmpIn, buffer);
+  var iconString = '';
+  // get ipa icon only works on macos
 
-        var result = exec(path.join(__dirname, '..', 'pngcrush -q -revert-iphone-optimizations ') + ' ' + tmpIn + ' ' + tmpOut).output;
+  if (process.platform == 'darwin') {
+    var tmpIn = ipasDir + '/tmpIn.png';
+    var tmpOut = ipasDir + '/tmpOut.png';
+    ipaEntries.forEach(function(ipaEntry) {
+      if (ipaEntry.entryName.indexOf('AppIcon60x60@3x.png') != -1) {
+        var buffer = new Buffer(ipaEntry.getData());
+        if (buffer.length) {
+          fs.writeFileSync(tmpIn, buffer);
 
-        iconString = 'data:image/png;base64,' + base64_encode(tmpOut);
+          var result = exec(path.join(__dirname, '..', 'pngcrush -q -revert-iphone-optimizations ') + ' ' + tmpIn + ' ' + tmpOut).output;
+
+          iconString = 'data:image/png;base64,' + base64_encode(tmpOut);
+        }
       }
-    }
-  });
-  fs.removeSync(tmpIn);
-  fs.removeSync(tmpOut);
+    });
+    fs.removeSync(tmpIn);
+    fs.removeSync(tmpOut);
+  }
   return {
     name: name,
     description: '   更新: ' + timeString,
