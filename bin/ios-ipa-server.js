@@ -89,10 +89,27 @@ function main() {
   };
 
   var app = express();
-  app.use('/', express.static(__dirname + '/' + ipasDir));
   app.use('/public', express.static(path.join(__dirname, '..', 'public')));
   app.use('/cer', express.static(globalCerFolder));
 
+  app.get('/ipa/:ipa', function(req, res) {
+    var filename = ipasDir + '/' + req.params.ipa;
+    console.log(filename);
+
+    // This line opens the file as a readable stream
+    var readStream = fs.createReadStream(filename);
+
+    // This will wait until we know the readable stream is actually valid before piping
+    readStream.on('open', function() {
+      // This just pipes the read stream to the response object (which goes to the client)
+      readStream.pipe(res);
+    });
+
+    // This catches any errors that happen while creating the readable stream (usually invalid names)
+    readStream.on('error', function(err) {
+      res.end(err);
+    });
+  });
   app.get(['/', '/download'], function(req, res, next) {
 
     fs.readFile(path.join(__dirname, '..', 'templates') + '/download.html', function(err, data) {
