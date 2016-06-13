@@ -155,7 +155,7 @@ function itemInfoWithName(name, ipasDir) {
   var tmpIn = ipasDir + '/tmpIn.png';
   var tmpOut = ipasDir + '/tmpOut.png';
   ipaEntries.forEach(function(ipaEntry) {
-    if (ipaEntry.entryName.indexOf('Payload/Veris.app/AppIcon60x60@3x.png') != -1) {
+    if (ipaEntry.entryName.indexOf('AppIcon60x60@3x.png') != -1) {
       var buffer = new Buffer(ipaEntry.getData());
       if (buffer.length) {
         fs.writeFileSync(tmpIn, buffer);
