@@ -43,9 +43,8 @@ $ ios-ipa-server /path/of/ipas
 
 
 #效果图
-![screeshot](https://cloud.githubusercontent.com/assets/4977911/8761994/82e33fc0-2d9e-11e5-873e-dbf6027f26a5.png)
+![screeshot](screeshot.png)
 
-![0dd9988f67781c0af2df4456a0328a72](https://cloud.githubusercontent.com/assets/4977911/8762061/5423ef66-2da0-11e5-9bb5-35fb97c424fa.png)
 
 
 #Lisence
