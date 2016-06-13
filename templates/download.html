@@ -20,11 +20,11 @@
 
 
 {{#items}}
+<img src="{{iconString}}">
 <h4><a href="itms-services://?action=download-manifest&url=https://{{ip}}:{{port}}/plist/{{name}}"><span class="name">{{name}}</span>{{description}}</a></h4>
 {{/items}}
 
 <script>
-	//jQuery('#qrcode').qrcode("this plugin is great");
 	var url = location.href;
 	$('#qrcodeTable').qrcode({
 		render	: "table",

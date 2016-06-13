@@ -1,17 +1,19 @@
 #!/usr/bin/env node
 
-var program = require('commander');
-var fs = require('fs');
+var fs = require('fs-extra');
 var https = require('https');
 var path = require('path');
 var exit = process.exit;
 var pkg = require('../package.json');
 var version = pkg.version;
 
+var program = require('commander');
 var express = require('express');
 var mustache = require('mustache');
 var strftime = require('strftime');
 var underscore = require('underscore');
+var AdmZip = require('adm-zip');
+
 var os = require('os');
 require('shelljs/global');
 
@@ -67,9 +69,7 @@ function main() {
 
   console.log('https://' + ipAddress + ':' + port + '/download');
   var destinationPath = program.args.shift() || '.';
-
   var ipasDir = destinationPath;
-
 
   var key;
   var cert;
@@ -78,7 +78,7 @@ function main() {
     key = fs.readFileSync(globalCerFolder + '/mycert1.key', 'utf8');
     cert = fs.readFileSync(globalCerFolder + '/mycert1.cer', 'utf8');
   } catch (e) {
-    var result = exec('sh  ' + path.join(__dirname, '..', 'generate-certificate.sh')).output;
+    var result = exec('sh  ' + path.join(__dirname, '..', 'generate-certificate.sh') + ' ' + ipAddress).output;
     key = fs.readFileSync(globalCerFolder + '/mycert1.key', 'utf8');
     cert = fs.readFileSync(globalCerFolder + '/mycert1.cer', 'utf8');
   }
@@ -87,7 +87,6 @@ function main() {
     key: key,
     cert: cert
   };
-
 
   var app = express();
   app.use('/', express.static(__dirname + '/' + ipasDir));
@@ -104,7 +103,7 @@ function main() {
 
       var items = [];
       for (var i = ipas.length - 1; i >= 0; i--) {
-        items.push(itemWithEnv(ipas[i], ipasDir));
+        items.push(itemInfoWithName(ipas[i], ipasDir));
       };
 
       items = items.sort(function(a, b) {
@@ -145,19 +144,43 @@ function main() {
 
 }
 
-function itemWithEnv(env, ipasDir) {
-  var stat = fs.statSync(ipasDir + '/' + env + '.ipa');
+function itemInfoWithName(name, ipasDir) {
+  var location = ipasDir + '/' + name + '.ipa';
+  var stat = fs.statSync(location);
   var time = new Date(stat.mtime);
   var timeString = strftime('%F %H:%M', time);
+  var ipa = new AdmZip(location);
+  var ipaEntries = ipa.getEntries();
+  var iconString;
+  var tmpIn = ipasDir + '/tmpIn.png';
+  var tmpOut = ipasDir + '/tmpOut.png';
+  ipaEntries.forEach(function(ipaEntry) {
+    if (ipaEntry.entryName == 'Payload/Veris.app/AppIcon60x60@3x.png') {
+      var buffer = new Buffer(ipaEntry.getData());
+      fs.writeFileSync(tmpIn, buffer);
+      var result = exec(path.join(__dirname, '..', 'pngcrush -q -revert-iphone-optimizations ') + ' ' + tmpIn + ' ' + tmpOut).output;
+
+      iconString = 'data:image/png;base64,' + base64_encode(tmpOut);
+    }
+  });
+  fs.removeSync(tmpIn);
+  fs.removeSync(tmpOut);
   return {
-    name: env,
+    name: name,
     description: '   更新: ' + timeString,
     time: time,
+    iconString: iconString,
     ip: ipAddress,
     port: port,
   }
 }
 
+function base64_encode(file) {
+  // read binary data
+  var bitmap = fs.readFileSync(file);
+  // convert binary data to base64 encoded string
+  return new Buffer(bitmap).toString('base64');
+}
 /**
  *
  */

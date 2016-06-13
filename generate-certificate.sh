@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-ip=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
+ip=$1
 cerDir="$HOME/.ios-ipa-server/"$ip"/"
 # echo $ip
 # echo $cerDir
