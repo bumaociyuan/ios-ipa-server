@@ -94,7 +94,7 @@ function main() {
 
   app.get('/ipa/:ipa', function(req, res) {
     var filename = ipasDir + '/' + req.params.ipa;
-    console.log(filename);
+    // console.log(filename);
 
     // This line opens the file as a readable stream
     var readStream = fs.createReadStream(filename);
@@ -110,6 +110,7 @@ function main() {
       res.end(err);
     });
   });
+
   app.get(['/', '/download'], function(req, res, next) {
 
     fs.readFile(path.join(__dirname, '..', 'templates') + '/download.html', function(err, data) {
