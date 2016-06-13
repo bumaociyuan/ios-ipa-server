@@ -155,12 +155,15 @@ function itemInfoWithName(name, ipasDir) {
   var tmpIn = ipasDir + '/tmpIn.png';
   var tmpOut = ipasDir + '/tmpOut.png';
   ipaEntries.forEach(function(ipaEntry) {
-    if (ipaEntry.entryName == 'Payload/Veris.app/AppIcon60x60@3x.png') {
+    if (ipaEntry.entryName.indexOf('Payload/Veris.app/AppIcon60x60@3x.png') != -1) {
       var buffer = new Buffer(ipaEntry.getData());
-      fs.writeFileSync(tmpIn, buffer);
-      var result = exec(path.join(__dirname, '..', 'pngcrush -q -revert-iphone-optimizations ') + ' ' + tmpIn + ' ' + tmpOut).output;
+      if (buffer.length) {
+        fs.writeFileSync(tmpIn, buffer);
 
-      iconString = 'data:image/png;base64,' + base64_encode(tmpOut);
+        var result = exec(path.join(__dirname, '..', 'pngcrush -q -revert-iphone-optimizations ') + ' ' + tmpIn + ' ' + tmpOut).output;
+
+        iconString = 'data:image/png;base64,' + base64_encode(tmpOut);
+      }
     }
   });
   fs.removeSync(tmpIn);
