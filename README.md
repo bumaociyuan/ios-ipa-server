@@ -1,4 +1,4 @@
-自动生成自签名HTTPS服务器，局域网快速安装ipa
+自动生成自签名HTTPS服务器，快速安装ipa
 
 [For English README](./README-en.md)
 
