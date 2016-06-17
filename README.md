@@ -1,6 +1,6 @@
 自动生成自签名HTTPS服务器，快速安装ipa
 
-[For English README](./README-en.md)
+[README For English](./README-en.md)
 
 # 支持
 * OS X

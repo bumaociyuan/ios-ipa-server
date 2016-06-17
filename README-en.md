@@ -1,5 +1,7 @@
 Install IPA with HTTPS, and auto generate certificates.
 
+[中文介绍](./README.md)
+
 # Support Platform
 * OS X
 * Ubuntu
@@ -42,9 +44,7 @@ $ ios-ipa-server /path/of/ipas
 * Highly recommond use static ip address, avoid reinstall cer every time.
 
 # Screenshots
-![screeshot](https://cloud.githubusercontent.com/assets/4977911/8761994/82e33fc0-2d9e-11e5-873e-dbf6027f26a5.png)
-
-![0dd9988f67781c0af2df4456a0328a72](https://cloud.githubusercontent.com/assets/4977911/8762061/5423ef66-2da0-11e5-9bb5-35fb97c424fa.png)
+![screeshot](screeshot.png)
 
 
 #Lisence
