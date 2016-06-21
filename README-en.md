@@ -46,6 +46,23 @@ $ ios-ipa-server /path/of/ipas
 # Screenshots
 ![screeshot](screeshot.png)
 
+# Develop
+
+```
+# Download source code
+git clone git@github.com:bumaociyuan/ios-ipa-server.git
+
+# Install modules
+cd ios-ipa-server
+npm install 
+
+# Make link for debug
+npm link
+
+# Run
+cd /path/of/ipa
+ios-ipa-server
+```
 
 #Lisence
 [MIT](https://github.com/bumaociyuan/zxIpaServer/blob/master/LICENSE.md)
