@@ -25,26 +25,33 @@ Options:
 -V, --version             output the version number
 -p, --port <port-number>  set port for server (defaults is 1234)
 ```
+
+## Start Server
 ```
-$ cd /path/of/ipas
+$ cd /path/of/ipa
 $ ios-ipa-server
 
 # or 
 
-$ ios-ipa-server /path/of/ipas
+$ ios-ipa-server /path/of/ipa
 
 
 # open https://ip:port/download on your iphone 
-
 ```
 
-* Use [Ad-hoc](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html) or [Enterprise Distributing](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/DistributingEnterpriseProgramApps/DistributingEnterpriseProgramApps.html)
-* Open https://ip:port/download, then click Certificate to install.
-* Click ipa link to install app.
+### About `ipa` archive
+* [Ad-hoc](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html)
+* [Enterprise Distributing](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/DistributingEnterpriseProgramApps/DistributingEnterpriseProgramApps.html)
+* For normal developer you can use the [shenzhen](https://github.com/nomad/shenzhen) to build the `ipa`.
 * Highly recommond use static ip address, avoid reinstall cer every time.
 
+### Install App
+* Open `https://ip:port/download` page.
+* The first time webpage will alert `blabla`, plz click confirm, and click the Certificate's installation link, follow the hint press next and input password.
+* Click the `ipa` link to install ota.
+
 # Screenshots
-![screeshot](screeshot.png)
+![screeshot];(screeshot.png)
 
 # Develop
 

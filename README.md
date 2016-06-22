@@ -10,14 +10,12 @@
 # 需要
 * [nodejs](https://nodejs.org/)
 
-#安装
-
+# 安装
 ```
 $ npm install -g ios-ipa-server
 ```
 
 # 用法
-
 ```
 Usage: ios-ipa-server [option] [dir]
 
@@ -27,24 +25,29 @@ Options:
 -V, --version             output the version number
 -p, --port <port-number>  set port for server (defaults is 1234)
 ```
+
+## 开启服务
 ```
-$ cd /path/of/ipas
+$ cd /path/of/ipa
 $ ios-ipa-server
 
 # or
 
-$ ios-ipa-server /path/of/ipas
+$ ios-ipa-server /path/of/ipa
 
 
 # open https://ip:port/download on your iphone
-
 ```
 
-# 使用
-* 使用[Ad-hoc](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html)或者[企业级分发](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/DistributingEnterpriseProgramApps/DistributingEnterpriseProgramApps.html)打包ipa 放到ipas文件夹下
-* 手机使用safari打开 https://ip:port/download 页面点击安装证书，按指示一直点击下一步和完成
-* 点击ipa链接在线安装
-* 强烈推荐使用静态IP，避免每次重新安装证书
+### 关于`ipa`打包方法
+* [Ad-hoc](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html)
+* [企业级分发](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/DistributingEnterpriseProgramApps/DistributingEnterpriseProgramApps.html)
+* 普通开发者账号推荐使用[shenzhen](https://github.com/nomad/shenzhen)打包生成`ipa`
+
+### 安装app
+* 手机使用safari打开`https://ip:port/download`页面
+* 第一次打开会弹出警告`无法验证服务器`，请点击确认，并点击证书安装链接，按指示一直点击下一步和完成(**强烈推荐使用静态IP，避免每次重新安装证书**)
+* 点击`ipa`链接在线安装
 
 
 # 效果图
@@ -58,15 +61,15 @@ $ ios-ipa-server /path/of/ipas
 git clone git@github.com:bumaociyuan/ios-ipa-server.git
 
 # 安装依赖包
-cd ios-ipa-server
-npm install 
+$ cd ios-ipa-server
+$ npm install 
 
 # 建立link 方便调试
-npm link
+$ npm link
 
 # 运行
-cd /path/of/ipa
-ios-ipa-server
+$ cd /path/of/ipa
+$ ios-ipa-server
 ```
-#Lisence
+# Lisence
 [MIT](https://github.com/bumaociyuan/zxIpaServer/blob/master/LICENSE.md)
