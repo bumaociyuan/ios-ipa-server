@@ -49,8 +49,7 @@ $ ios-ipa-server /path/of/ipa
 * 第一次打开会弹出警告`无法验证服务器`，请点击`详情`按钮安装证书，按指示一直点击下一步和完成(**强烈推荐使用静态IP，避免每次重新安装证书**)
 * 点击`ipa`链接在线安装`ipa`
 
-![simulator screen shot jun 22 2016 2 45 19 pm](https://cloud.githubusercontent.com/assets/4977911/16257029/6eb2b288-3888-11e6-8690-4ca7e5e6f707.png)
-
+![simulator screen shot jun 22 2016 2 45 19 pm 2](https://cloud.githubusercontent.com/assets/4977911/16257320/66c5ff7e-388a-11e6-827a-b5708b86e272.png)
 # 效果图
 ![screeshot](screeshot.png)
 

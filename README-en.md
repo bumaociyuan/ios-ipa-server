@@ -50,7 +50,7 @@ $ ios-ipa-server /path/of/ipa
 * The first time webpage will alert `Cannot Verify Server Identity`, plz click `Details` button, and install the certificate by follow the hint press next and input password.
 * Click the `ipa` link to install `ipa`.
 
-![](https://cloud.githubusercontent.com/assets/4977911/16257146/13154016-3889-11e6-93d1-0e5be97a1074.png)
+![simulator screen shot jun 22 2016 2 38 35 pm 2](https://cloud.githubusercontent.com/assets/4977911/16257321/66d10888-388a-11e6-9b2d-d5ed0d100d8c.png)
 
 # Screenshots
 ![screeshot](screeshot.png)
