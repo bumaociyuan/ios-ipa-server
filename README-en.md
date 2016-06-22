@@ -47,28 +47,30 @@ $ ios-ipa-server /path/of/ipa
 
 ### Install App
 * Open `https://ip:port/download` page.
-* The first time webpage will alert `blabla`, plz click confirm, and click the Certificate's installation link, follow the hint press next and input password.
-* Click the `ipa` link to install ota.
+* The first time webpage will alert `Cannot Verify Server Identity`, plz click `Details` button, and install the certificate by follow the hint press next and input password.
+* Click the `ipa` link to install `ipa`.
+
+![](https://cloud.githubusercontent.com/assets/4977911/16257146/13154016-3889-11e6-93d1-0e5be97a1074.png)
 
 # Screenshots
-![screeshot];(screeshot.png)
+![screeshot](screeshot.png)
 
 # Develop
 
 ```
 # Download source code
-git clone git@github.com:bumaociyuan/ios-ipa-server.git
+$ git clone git@github.com:bumaociyuan/ios-ipa-server.git
 
 # Install modules
-cd ios-ipa-server
-npm install 
+$ cd ios-ipa-server
+$ npm install 
 
 # Make link for debug
-npm link
+$ npm link
 
 # Run
-cd /path/of/ipa
-ios-ipa-server
+$ cd /path/of/ipa
+$ ios-ipa-server
 ```
 
 #Lisence

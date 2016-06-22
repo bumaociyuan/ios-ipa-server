@@ -46,9 +46,10 @@ $ ios-ipa-server /path/of/ipa
 
 ### 安装app
 * 手机使用safari打开`https://ip:port/download`页面
-* 第一次打开会弹出警告`无法验证服务器`，请点击确认，并点击证书安装链接，按指示一直点击下一步和完成(**强烈推荐使用静态IP，避免每次重新安装证书**)
-* 点击`ipa`链接在线安装
+* 第一次打开会弹出警告`无法验证服务器`，请点击`详情`按钮安装证书，按指示一直点击下一步和完成(**强烈推荐使用静态IP，避免每次重新安装证书**)
+* 点击`ipa`链接在线安装`ipa`
 
+![simulator screen shot jun 22 2016 2 45 19 pm](https://cloud.githubusercontent.com/assets/4977911/16257029/6eb2b288-3888-11e6-8690-4ca7e5e6f707.png)
 
 # 效果图
 ![screeshot](screeshot.png)
@@ -58,7 +59,7 @@ $ ios-ipa-server /path/of/ipa
 
 ```
 # 下载源码
-git clone git@github.com:bumaociyuan/ios-ipa-server.git
+$ git clone git@github.com:bumaociyuan/ios-ipa-server.git
 
 # 安装依赖包
 $ cd ios-ipa-server
