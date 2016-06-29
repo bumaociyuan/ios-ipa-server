@@ -71,5 +71,13 @@ $ npm link
 $ cd /path/of/ipa
 $ ios-ipa-server
 ```
+
+# TODO
+
+- [  ] 支持Linux解析icon
+- [  ] 修改CSS样式
+- [  ] 支持多语言
+
+
 # Lisence
 [MIT](https://github.com/bumaociyuan/zxIpaServer/blob/master/LICENSE.md)
