@@ -74,9 +74,9 @@ $ ios-ipa-server
 
 # TODO
 
-- [  ] 支持Linux解析icon
-- [  ] 修改CSS样式
-- [  ] 支持多语言
+- [ ] 支持Linux解析icon
+- [ ] 修改CSS样式
+- [ ] 支持多语言
 
 
 # Lisence
