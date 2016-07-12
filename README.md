@@ -77,6 +77,8 @@ $ ios-ipa-server
 - [ ] 支持Linux解析icon
 - [ ] 修改CSS样式
 - [ ] 支持多语言
+- [ ] 支持[shenzhen](https://github.com/nomad/shenzhen)
+- [ ] 支持上传IPA
 
 
 # Lisence
