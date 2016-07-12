@@ -73,5 +73,14 @@ $ cd /path/of/ipa
 $ ios-ipa-server
 ```
 
+# TODO
+
+- [ ] Support Linux parse IPA icon
+- [ ] Beautify interface
+- [ ] Support Internationalization
+- [ ] Support [shenzhen](https://github.com/nomad/shenzhen)
+- [ ] Support upload IPA
+
+
 #Lisence
 [MIT](https://github.com/bumaociyuan/zxIpaServer/blob/master/LICENSE.md)
