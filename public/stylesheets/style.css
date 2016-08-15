@@ -1,8 +1,64 @@
 body {
-  padding: 50px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #0077FF;
+  text-decoration: none;
+}
+
+#qrcodeTable table{
+	margin: 0px auto;
+}
+
+ul {
+	padding: 0px;
+}
+
+hr {
+	border:0.5px solid lightgray;
+}
+
+li {
+	list-style-type: none;
+	margin: 0px;
+	display: -webkit-flex;
+  	display: flex;
+  	flex-direction: row;
+  	justify-content: space-between;
+  	align-items: center;
+}
+
+.info {
+	flex-grow: 2;
+	margin-left: 10px;
+	display: -webkit-flex;
+  	display: flex;
+  	flex-direction: column;
+	justify-content: space-between;
+}
+
+.name {
+	line-height: 2;
+	font-size: 12pt;
+}
+
+.desc {
+	color: gray;
+	line-height: 2;
+	font-size: 8pt;
+}
+
+.link {
+	font-size: 12pt;
+	border: 1px solid #00B7FF;
+	border-radius: 10%;
+	padding: 4px 8px;
+}
+
+.icon {
+	width: 20%;
+	border-radius: 22%;
+	border: 1px solid lightgray;
 }
