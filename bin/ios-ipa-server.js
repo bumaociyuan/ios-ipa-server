@@ -170,26 +170,28 @@ function itemInfoWithName(name, ipasDir) {
 
   // get ipa icon only works on macos
   var iconString = '';
+  var exeName = '';
   if (process.platform == 'darwin') {
-    var ipa = new AdmZip(location);
-    var ipaEntries = ipa.getEntries();
-    var tmpIn = ipasDir + '/tmpIn.png';
-    var tmpOut = ipasDir + '/tmpOut.png';
-    ipaEntries.forEach(function(ipaEntry) {
-      if (ipaEntry.entryName.indexOf('AppIcon60x60@3x.png') != -1) {
-        var buffer = new Buffer(ipaEntry.getData());
-        if (buffer.length) {
-          fs.writeFileSync(tmpIn, buffer);
-
-          var result = exec(path.join(__dirname, '..', 'pngcrush -q -revert-iphone-optimizations ') + ' ' + tmpIn + ' ' + tmpOut).output;
-
-          iconString = 'data:image/png;base64,' + base64_encode(tmpOut);
-        }
-      }
-    });
-    fs.removeSync(tmpIn);
-    fs.removeSync(tmpOut);
+    exeName = 'pngdefry-osx';
+  } else {
+    exeName = 'pngdefry-linux';
   }
+  var ipa = new AdmZip(location);
+  var ipaEntries = ipa.getEntries();
+  var tmpIn = ipasDir + '/icon.png';
+  var tmpOut = ipasDir + '/icon_tmp.png';
+  ipaEntries.forEach(function(ipaEntry) {
+    if (ipaEntry.entryName.indexOf('AppIcon60x60@3x.png') != -1) {
+      var buffer = new Buffer(ipaEntry.getData());
+      if (buffer.length) {
+        fs.writeFileSync(tmpIn, buffer);
+        var result = exec(path.join(__dirname, '..', exeName +' -s _tmp ') + ' ' + tmpIn).output;
+        iconString = 'data:image/png;base64,' + base64_encode(tmpOut);
+      }
+    }
+  });
+  fs.removeSync(tmpIn);
+  fs.removeSync(tmpOut);
   return {
     name: name,
     description: '   更新: ' + timeString,
