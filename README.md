@@ -74,7 +74,6 @@ $ ios-ipa-server
 
 # TODO
 
-- [ ] 支持Linux解析icon
 - [ ] 支持多语言
 - [ ] 支持[shenzhen](https://github.com/nomad/shenzhen)
 - [ ] 支持上传IPA

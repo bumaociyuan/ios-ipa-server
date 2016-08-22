@@ -75,7 +75,6 @@ $ ios-ipa-server
 
 # TODO
 
-- [ ] Support Linux parse IPA icon
 - [ ] Support Internationalization
 - [ ] Support [shenzhen](https://github.com/nomad/shenzhen)
 - [ ] Support upload IPA
