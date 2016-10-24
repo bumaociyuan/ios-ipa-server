@@ -29,9 +29,9 @@ var ipAddress = underscore
 
 
 var globalCerFolder = os.homedir() + '/.ios-ipa-server/' + ipAddress;
-/**
- * Main program.
- */
+  /**
+   * Main program.
+   */
 process.exit = exit
 
 // CLI
@@ -52,9 +52,9 @@ if (!exit.exited) {
   main();
 }
 
-/**
- * Install a before function; AOP.
- */
+  /**
+   * Install a before function; AOP.
+   */
 
 function before(obj, method, fn) {
   var old = obj[method];
@@ -114,7 +114,8 @@ function main() {
   app.get(['/', '/download'], function(req, res, next) {
 
     fs.readFile(path.join(__dirname, '..', 'templates') + '/download.html', function(err, data) {
-      if (err) throw err;
+      if (err)
+        throw err;
       var template = data.toString();
 
       var ipas = ipasInLocation(ipasDir);
@@ -122,7 +123,8 @@ function main() {
       var items = [];
       for (var i = ipas.length - 1; i >= 0; i--) {
         items.push(itemInfoWithName(ipas[i], ipasDir));
-      };
+      }
+      ;
 
       items = items.sort(function(a, b) {
         var result = b.time.getTime() - a.time.getTime();
@@ -143,7 +145,8 @@ function main() {
 
   app.get('/plist/:file', function(req, res) {
     fs.readFile(path.join(__dirname, '..', 'templates') + '/template.plist', function(err, data) {
-      if (err) throw err;
+      if (err)
+        throw err;
       var template = data.toString();
 
       var rendered = mustache.render(template, {
@@ -180,16 +183,20 @@ function itemInfoWithName(name, ipasDir) {
   var ipaEntries = ipa.getEntries();
   var tmpIn = ipasDir + '/icon.png';
   var tmpOut = ipasDir + '/icon_tmp.png';
-  ipaEntries.forEach(function(ipaEntry) {
-    if (ipaEntry.entryName.indexOf('AppIcon60x60@3x.png') != -1) {
-      var buffer = new Buffer(ipaEntry.getData());
-      if (buffer.length) {
-        fs.writeFileSync(tmpIn, buffer);
-        var result = exec(path.join(__dirname, '..', exeName +' -s _tmp ') + ' ' + tmpIn).output;
-        iconString = 'data:image/png;base64,' + base64_encode(tmpOut);
+  try {
+    ipaEntries.forEach(function(ipaEntry) {
+      if (ipaEntry.entryName.indexOf('AppIcon60x60@3x.png') != -1) {
+        var buffer = new Buffer(ipaEntry.getData());
+        if (buffer.length) {
+          fs.writeFileSync(tmpIn, buffer);
+          var result = exec(path.join(__dirname, '..', exeName + ' -s _tmp ') + ' ' + tmpIn).output;
+          iconString = 'data:image/png;base64,' + base64_encode(tmpOut);
+        }
       }
-    }
-  });
+    });
+  } catch (e) {
+    console.log(e);
+  }
   fs.removeSync(tmpIn);
   fs.removeSync(tmpOut);
   return {
@@ -208,9 +215,9 @@ function base64_encode(file) {
   // convert binary data to base64 encoded string
   return new Buffer(bitmap).toString('base64');
 }
-/**
- *
- */
+  /**
+   *
+   */
 
 function ipasInLocation(location) {
   var result = [];
