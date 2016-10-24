@@ -195,7 +195,6 @@ function itemInfoWithName(name, ipasDir) {
       }
     });
   } catch (e) {
-    console.log(e);
   }
   fs.removeSync(tmpIn);
   fs.removeSync(tmpOut);
