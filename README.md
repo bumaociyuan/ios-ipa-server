@@ -5,6 +5,7 @@
 # 支持
 * OS X
 * Ubuntu
+* CentOS
 * 其他平台未测试
 
 # 需要
