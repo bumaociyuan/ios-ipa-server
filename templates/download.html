@@ -1,44 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>ios ipa server</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta content="telephone=no" name="format-detection" />
-<meta name="viewport" content="width=320,maximum-scale=1,user-scalable=no"/>
-<link rel="stylesheet" href="/public/stylesheets/style.css">
-<script src="/public/javascripts/qrcode/jquery.min.js"></script>
-<script type="text/javascript" src="/public/javascripts/qrcode/jquery.qrcode.js"></script>
-<script type="text/javascript" src="/public/javascripts/qrcode/qrcode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <script src="/public/javascripts/qrcode/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/javascripts/qrcode/jquery.qrcode.js"></script>
+    <script type="text/javascript" src="/public/javascripts/qrcode/qrcode.js"></script>
+    <title>ios ipa server</title>
 </head>
 <body>
-
-<h3>【微信扫描此页面不能显示】，请点击右上角“在Safari中打开”</h3>
-
-<div id="qrcodeTable"></div>
-
-<h3><a id='cer' href="https://{{ip}}:{{port}}/cer/myCA.cer">如果出现【无法验证服务器身份】或【无法连接到】，请点击此链接安装证书</a></h3>
-
-<ul>
-{{#items}}
-<li>
-	<img src="{{iconString}}" class="icon" />
-	<div class="info">
-		<span class="name">{{name}}</span>
-		<div class="desc">{{description}}</div>
-	</div>
-	<a href="itms-services://?action=download-manifest&url=https://{{ip}}:{{port}}/plist/{{name}}" class="link">下载</a>
-</li>
-<hr/>
-{{/items}}
-</ul>
-<script>
-	var url = location.href;
-	$('#qrcodeTable').qrcode({
-		render	: "table",
-		text	: url
-	});	
-
-</script>
-
+    <h3>【微信扫描此页面不能显示】，请点击右上角“在Safari中打开”</h3>
+    <div id="qrcodeTable"></div>
+    <h3>
+        <a id='cer' href="https://{{ip}}:{{port}}/cer/myCA.cer">如果出现【无法验证服务器身份】或【无法连接到】，请点击此链接安装证书</a>
+    </h3>
+    <ul>
+        {{#items}}
+        <li>
+        	<img src="{{iconString}}" class="icon" />
+        	<div class="info">
+        		<span class="name">{{name}}</span>
+        		<div class="desc">{{description}}</div>
+        	</div>
+            <a href="javascript:;" downloadUrl="itms-services://?action=download-manifest&url=https://{{ip}}:{{port}}/plist/{{name}}" class="link">下载</a>
+        </li>
+        <hr/>
+        {{/items}}
+    </ul>
+    <script>
+    	var url = location.href;
+    	$('#qrcodeTable').qrcode({
+    		render	: "table",
+    		text	: url
+    	});
+    	$('.link').click(function(){
+            if(confirm("点击安装后会自动下载app, 请返回桌面查看")){
+                window.location.href = $(this).attr('downloadUrl');
+            }
+        });
+    </script>
 </body>
 </html>

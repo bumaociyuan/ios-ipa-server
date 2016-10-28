@@ -195,6 +195,10 @@ function itemInfoWithName(name, ipasDir) {
       }
     });
   } catch (e) {
+    if (e) {
+      var imageBase64 = fs.readFileSync(tmpIn).toString("base64");
+      iconString = 'data:image/png;base64,' + imageBase64;
+    }
   }
   fs.removeSync(tmpIn);
   fs.removeSync(tmpOut);
