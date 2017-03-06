@@ -17,18 +17,6 @@ var AdmZip = require('adm-zip');
 var os = require('os');
 require('shelljs/global');
 
-var ipAddress = underscore
-  .chain(require('os').networkInterfaces())
-  .values()
-  .flatten()
-  .find(function(iface) {
-    return iface.family === 'IPv4' && iface.internal === false;
-  })
-  .value()
-  .address;
-
-
-var globalCerFolder = os.homedir() + '/.ios-ipa-server/' + ipAddress;
   /**
    * Main program.
    */
@@ -44,8 +32,22 @@ program
   .version(version)
   .usage('[option] [dir]')
   .option('-p, --port <port-number>', 'set port for server (defaults is 1234)')
+  .option('-i, --ip <ip-address>', 'set ip address for server (defaults is automatic getting by program)')
   .parse(process.argv);
 
+var ipAddress = program.ip || underscore
+  .chain(require('os').networkInterfaces())
+  .values()
+  .flatten()
+  .find(function(iface) {
+    return iface.family === 'IPv4' && iface.internal === false;
+  })
+  .value()
+  .address;
+
+
+
+var globalCerFolder = os.homedir() + '/.ios-ipa-server/' + ipAddress;
 var port = program.port || 1234;
 
 if (!exit.exited) {
