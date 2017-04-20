@@ -13,6 +13,8 @@ var mustache = require('mustache');
 var strftime = require('strftime');
 var underscore = require('underscore');
 var AdmZip = require('adm-zip');
+var osHomedir = require('os-homedir');
+
 
 var os = require('os');
 require('shelljs/global');
@@ -47,7 +49,7 @@ var ipAddress = program.ip || underscore
 
 
 
-var globalCerFolder = os.homedir() + '/.ios-ipa-server/' + ipAddress;
+var globalCerFolder = osHomedir() + '/.ios-ipa-server/' + ipAddress;
 var port = program.port || 1234;
 
 if (!exit.exited) {
