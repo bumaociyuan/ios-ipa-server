@@ -15,13 +15,21 @@ var underscore = require('underscore');
 var AdmZip = require('adm-zip');
 var osHomedir = require('os-homedir');
 
+var base64 = {
+  encode: function (unencoded) {
+    return new Buffer(unencoded).toString('base64');
+  },
+  decode: function (encoded) {
+    return new Buffer(encoded, 'base64').toString('utf8');
+  }
+}
 
 var os = require('os');
 require('shelljs/global');
 
-  /**
-   * Main program.
-   */
+/**
+ * Main program.
+ */
 process.exit = exit
 
 // CLI
@@ -56,9 +64,9 @@ if (!exit.exited) {
   main();
 }
 
-  /**
-   * Install a before function; AOP.
-   */
+/**
+ * Install a before function; AOP.
+ */
 
 function before(obj, method, fn) {
   var old = obj[method];
@@ -97,8 +105,9 @@ function main() {
   app.use('/cer', express.static(globalCerFolder));
 
   app.get('/ipa/:ipa', function(req, res) {
-    var filename = ipasDir + '/' + req.params.ipa;
-    // console.log(filename);
+    var encodedName = req.params.ipa.replace('.ipa', '');
+    var ipa = base64.decode(encodedName);
+    var filename = ipasDir + '/' + ipa + '.ipa';
 
     // This line opens the file as a readable stream
     var readStream = fs.createReadStream(filename);
@@ -128,12 +137,9 @@ function main() {
       for (var i = ipas.length - 1; i >= 0; i--) {
         items.push(itemInfoWithName(ipas[i], ipasDir));
       }
-      ;
 
       items = items.sort(function(a, b) {
         var result = b.time.getTime() - a.time.getTime();
-        // if (result > 0) {result = 1} else if (result < 0) { result = -1 };
-
         return result;
       });
 
@@ -148,19 +154,23 @@ function main() {
 
 
   app.get('/plist/:file', function(req, res) {
+
     fs.readFile(path.join(__dirname, '..', 'templates') + '/template.plist', function(err, data) {
       if (err)
         throw err;
       var template = data.toString();
 
+      var encodedName = req.params.file;
+      var name = base64.decode(encodedName)
       var rendered = mustache.render(template, {
-        name: req.params.file,
+        encodedName: encodedName,
+        name: name,
         ip: ipAddress,
         port: port,
       });
 
       res.set('Content-Type', 'text/plain; charset=utf-8');
-      // res.set('MIME-Type', 'application/octet-stream');
+      res.set('Content-Type', 'text/plain; charset=utf-8');
       res.send(rendered);
     })
   });
@@ -207,8 +217,8 @@ function itemInfoWithName(name, ipasDir) {
   fs.removeSync(tmpIn);
   fs.removeSync(tmpOut);
   return {
+    encodedName: base64.encode(name),
     name: name,
-    description: '   更新: ' + timeString,
     time: time,
     iconString: iconString,
     ip: ipAddress,
@@ -222,9 +232,9 @@ function base64_encode(file) {
   // convert binary data to base64 encoded string
   return new Buffer(bitmap).toString('base64');
 }
-  /**
-   *
-   */
+/**
+ *
+ */
 
 function ipasInLocation(location) {
   var result = [];

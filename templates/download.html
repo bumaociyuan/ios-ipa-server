@@ -26,7 +26,7 @@
         		<span class="name">{{name}}</span>
         		<div class="desc">{{description}}</div>
         	</div>
-            <a href="javascript:;" downloadUrl="itms-services://?action=download-manifest&url=https://{{ip}}:{{port}}/plist/{{name}}" class="link">下载</a>
+            <a href="javascript:;" downloadUrl="itms-services://?action=download-manifest&url=https://{{ip}}:{{port}}/plist/{{encodedName}}" class="link">下载</a>
         </li>
         <hr/>
         {{/items}}
