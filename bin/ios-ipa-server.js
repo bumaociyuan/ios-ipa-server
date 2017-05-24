@@ -14,15 +14,8 @@ var strftime = require('strftime');
 var underscore = require('underscore');
 var AdmZip = require('adm-zip');
 var osHomedir = require('os-homedir');
+var base64 = require('base64-url');
 
-var base64 = {
-  encode: function (unencoded) {
-    return new Buffer(unencoded).toString('base64');
-  },
-  decode: function (encoded) {
-    return new Buffer(encoded, 'base64').toString('utf8');
-  }
-}
 
 var os = require('os');
 require('shelljs/global');
@@ -169,7 +162,6 @@ function main() {
         port: port,
       });
 
-      res.set('Content-Type', 'text/plain; charset=utf-8');
       res.set('Content-Type', 'text/plain; charset=utf-8');
       res.send(rendered);
     })
