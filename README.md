@@ -81,6 +81,7 @@ $ ios-ipa-server
 - [ ] 支持多语言
 - [ ] 支持[shenzhen](https://github.com/nomad/shenzhen)
 - [ ] 支持上传IPA
+- [ ] iOS 10.3 以上提示 #23 证书信任设置
 
 
 # Lisence
