@@ -2,6 +2,13 @@
 
 [README For English](./README-en.md)
 
+# iOS 10.3
+* iOS 10.3 [安装方法](https://github.com/bumaociyuan/ios-ipa-server/issues/23) Settings > General > About (logically...) > Certificate Trust Settings > Enable Full Trust for Root Certificates
+
+# iOS 11
+* 需要 `ios-ipa-server1.2.0`以上，并先扫描安装CA证书，信任证书方法同iOS 10.3
+
+
 # 支持
 * OS X
 * Ubuntu
@@ -50,7 +57,6 @@ $ ios-ipa-server /path/of/ipa
 * 手机使用safari打开`https://ip:port/download`页面
 * 第一次打开会弹出警告`无法验证服务器`，请点击`详细信息`按钮安装证书，按指示一直点击下一步和完成(**强烈推荐使用静态IP，避免每次重新安装证书**)
 * 点击`ipa`链接在线安装`ipa`
-* iOS 10.3 [安装方法](https://github.com/bumaociyuan/ios-ipa-server/issues/23) Settings > General > About (logically...) > Certificate Trust Settings > Enable Full Trust for Root Certificates
 
 
 ![simulator screen shot jun 22 2016 2 45 19 pm 2](https://cloud.githubusercontent.com/assets/4977911/16257320/66c5ff7e-388a-11e6-827a-b5708b86e272.png)

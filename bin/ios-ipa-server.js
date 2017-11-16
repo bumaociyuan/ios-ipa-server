@@ -15,6 +15,7 @@ var underscore = require('underscore');
 var AdmZip = require('adm-zip');
 var osHomedir = require('os-homedir');
 var base64 = require('base64-url');
+var qrcode = require('qrcode-terminal');
 
 
 var os = require('os');
@@ -52,6 +53,7 @@ var ipAddress = program.ip || underscore
 
 var globalCerFolder = osHomedir() + '/.ios-ipa-server/' + ipAddress;
 var port = program.port || 1234;
+var port2 = port + 1;
 
 if (!exit.exited) {
   main();
@@ -71,8 +73,13 @@ function before(obj, method, fn) {
 }
 
 function main() {
-
-  console.log('https://' + ipAddress + ':' + port + '/download');
+  var downloadURL = 'https://' + ipAddress + ':' + port + '/download';
+  var cerURL = 'http://' + ipAddress + ':' + port2 + '/cer';
+  qrcode.generate(cerURL);
+  console.log('Install CA certification on iOS 11 ' + cerURL);
+  console.log('\n');
+  qrcode.generate(cerURL);
+  console.log('Open download page ' + downloadURL);
   var destinationPath = program.args.shift() || '.';
   var ipasDir = destinationPath;
 
@@ -96,6 +103,18 @@ function main() {
   var app = express();
   app.use('/public', express.static(path.join(__dirname, '..', 'public')));
   app.use('/cer', express.static(globalCerFolder));
+
+  var cerApp = express();
+  cerApp.get('/cer', function(req, res) {
+    fs.readFile(globalCerFolder + '/myCA.cer', function(err, data) {
+      if (err)
+        throw err;
+      res.setHeader('Content-disposition', 'attachment; filename=myCA.cer');
+      res.setHeader('Content-type', 'application/pkix-cert');
+      res.send(data);
+    });
+  });
+  cerApp.listen(port2);
 
   app.get('/ipa/:ipa', function(req, res) {
     var encodedName = req.params.ipa.replace('.ipa', '');
