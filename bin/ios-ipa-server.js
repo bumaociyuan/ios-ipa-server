@@ -78,7 +78,7 @@ function main() {
   qrcode.generate(cerURL);
   console.log('Install CA certification on iOS 11 ' + cerURL);
   console.log('\n');
-  qrcode.generate(cerURL);
+  qrcode.generate(downloadURL);
   console.log('Open download page ' + downloadURL);
   var destinationPath = program.args.shift() || '.';
   var ipasDir = destinationPath;
