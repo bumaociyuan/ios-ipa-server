@@ -231,6 +231,7 @@ function itemInfoWithName(name, ipasDir) {
     encodedName: base64.encode(name),
     name: name,
     time: time,
+    timeString: timeString,
     iconString: iconString,
     ip: ipAddress,
     port: port,
