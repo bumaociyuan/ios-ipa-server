@@ -99,7 +99,6 @@ function main() {
     key = fs.readFileSync(globalCerFolder + '/mycert1.key', 'utf8');
     cert = fs.readFileSync(globalCerFolder + '/mycert1.cer', 'utf8');
   }
-  console.log("disable ssl is =" + disabledSSL)
   var options = disabledSSL ? {} : {
     key: key,
     cert: cert
@@ -164,7 +163,6 @@ function main() {
       info.ip = ipAddress;
       info.port = port;
       info.items = items;
-      console.log(domain)
       info.url = domain ? domain : (ipAddress + ":" + port);
       var rendered = mustache.render(template, info);
       res.send(rendered);
