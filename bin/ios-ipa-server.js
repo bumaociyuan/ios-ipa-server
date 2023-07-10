@@ -2,6 +2,7 @@
 
 var fs = require('fs-extra');
 var https = require('https');
+var http = require('http');
 var path = require('path');
 var exit = process.exit;
 var pkg = require('../package.json');
@@ -37,6 +38,9 @@ program
   .usage('[option] [dir]')
   .option('-p, --port <port-number>', 'set port for server (defaults is 1234)')
   .option('-i, --ip <ip-address>', 'set ip address for server (defaults is automatic getting by program)')
+  .option('-n, --nossl', 'disable SSL for ios-ipa-server(default is enabled)')
+  .option('-d, --domain <domain>', 'domain for ios-ipa-server')
+
   .parse(process.argv);
 
 var ipAddress = program.ip || underscore
@@ -54,7 +58,8 @@ var ipAddress = program.ip || underscore
 var globalCerFolder = osHomedir() + '/.ios-ipa-server/' + ipAddress;
 var port = program.port || 1234;
 var port2 = port + 1;
-
+var domain = program.domain
+var disabledSSL = program.nossl
 if (!exit.exited) {
   main();
 }
@@ -82,7 +87,7 @@ function main() {
   console.log('Open download page ' + downloadURL);
   var destinationPath = program.args.shift() || '.';
   var ipasDir = destinationPath;
-
+  
   var key;
   var cert;
 
@@ -94,8 +99,7 @@ function main() {
     key = fs.readFileSync(globalCerFolder + '/mycert1.key', 'utf8');
     cert = fs.readFileSync(globalCerFolder + '/mycert1.cer', 'utf8');
   }
-
-  var options = {
+  var options = disabledSSL ? {} : {
     key: key,
     cert: cert
   };
@@ -159,6 +163,7 @@ function main() {
       info.ip = ipAddress;
       info.port = port;
       info.items = items;
+      info.url = domain ? domain : (ipAddress + ":" + port);
       var rendered = mustache.render(template, info);
       res.send(rendered);
     })
@@ -179,14 +184,19 @@ function main() {
         name: name,
         ip: ipAddress,
         port: port,
+        url: domain ? domain : (ipAddress + ":" + port)
       });
 
       res.set('Content-Type', 'text/plain; charset=utf-8');
       res.send(rendered);
     })
   });
-
-  https.createServer(options, app).listen(port);
+  if (disabledSSL) {
+    http.createServer(app).listen(port);
+  }
+  else {
+    https.createServer(options, app).listen(port);
+  }
 
 }
 
